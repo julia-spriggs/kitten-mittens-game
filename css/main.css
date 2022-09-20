@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(218, 193, 242);
+}
+
+#background {
+    background-image: url(../images/cat-background.png);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#mitten {
+    position: absolute;
+}
+
+#kitten {
+    position: absolute;
+}
