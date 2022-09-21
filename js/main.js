@@ -81,8 +81,8 @@ class Blob {
 
 class Mitten extends Blob {
     constructor() {
-        const width = 5;
-        const height = 5;
+        const width = 15;
+        const height = 20;
         const positionX = 50;
         const positionY = 100 - height;
 
@@ -119,10 +119,10 @@ class Mitten extends Blob {
 
 class Kitten extends Blob {
     constructor() {
-        const width = 10;
-        const height = 15;
+        const width = 20;
+        const height = 20;
         const positionX = Math.floor(Math.random() * (100 - width + 1));
-        const positionY = height;
+        const positionY = 0;
 
         super('kitten', 'kittenimage', width, height, positionX, positionY);
     }
