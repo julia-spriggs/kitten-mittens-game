@@ -23,6 +23,7 @@ body {
 
 .kitten {
     position: absolute;
+    transition: all .1s;
 }
 
 .kitten img {
