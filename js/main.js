@@ -31,7 +31,6 @@ class Game {
 
     attachEventListeners() {
         document.addEventListener('keydown', (event) => {
-            this.kitten.moveAround();
             if (event.key === 'ArrowLeft') {
                 this.mitten.moveLeft();
             } else if (event.key === 'ArrowRight') {
