@@ -91,7 +91,7 @@ class Mitten extends Blob {
 
     createMittenElement() {
         const mittenImage = document.createElement('img');
-        mittenImage.setAttribute('src', '../images/mittens.jpg');
+        mittenImage.setAttribute('src', '../images/mittens.png');
         this.domElement.appendChild(mittenImage);
     }
 
@@ -135,9 +135,9 @@ class Kitten extends Blob {
 
     moveAround() {
         if (this.positionX <= 100 - this.width) {
-            //moveLeft();
+            //this.moveLeft();
             if (this.positionX >= 0 + this.width) {
-                //<moveRight();
+                //this.moveRight();
             }
         }
     }
