@@ -12,10 +12,20 @@ body {
     background-size: cover;
 }
 
-#mitten {
+.mitten {
     position: absolute;
 }
 
-#kitten {
+.mitten img {
+    max-width: 10vw;
+    max-height: 15vh;
+}
+
+.kitten {
     position: absolute;
+}
+
+.kitten img {
+    max-width: 10vw;
+    max-height: 10vh;
 }

@@ -8,20 +8,22 @@ class Game {
     start() {
         this.mitten = new Mitten();
         this.kitten = new Kitten();
-        this.attachEventListeners();
-
         this.mitten.createDomElement();
         this.kitten.createDomElement();
         this.mitten.createMittenElement();
         this.kitten.createKittenElement();
-
+        this.mitten.moveDown();
+        this.kitten.moveAround();
+        this.attachEventListeners();
+        this.detectWin();
 
         setInterval(() => {
+            this.kitten.moveAround();
+            this.mitten.moveDown();
             if (this.detectWin() == true) {
                 const newKitten = new Kitten();
                 const newMitten = new Mitten();
-                moveAround(this.kitten);
-                moveDown(this.mitten);
+
             }
 
             this.time++;
@@ -62,14 +64,6 @@ class Blob {
         this.positionY = positionY;
         this.domElement = this.createDomElement();
     }
-    moveLeft() {
-        this.positionX--;
-        this.domElement.style.left = this.positionX + 'vw';
-    }
-    moveRight() {
-        this.positionX++;
-        this.domElement.style.left = this.positionX + 'vw';
-    }
 
     createDomElement() {
         const newElement = document.createElement('div');
@@ -87,8 +81,8 @@ class Blob {
 
 class Mitten extends Blob {
     constructor() {
-        const width = 10;
-        const height = 10;
+        const width = 5;
+        const height = 5;
         const positionX = 50;
         const positionY = 100 - height;
 
@@ -104,21 +98,31 @@ class Mitten extends Blob {
     moveDown() {
         this.positionY--;
         this.domElement.style.bottom = this.positionY + 'vh';
-        if (this.mitten.positionY + this.mitten.height === 0) {
-            this.mitten.domElement.remove();
+        if (this.positionY + this.height === 0) {
+            this.domElement.remove();
         }
         if (this.mitten = null) {
             const newMitten = Object.create(this.mitten);
         }
     }
+    moveLeft() {
+        this.positionX--;
+        this.domElement.style.left = this.positionX + 'vw';
+        console.log(this.positionX);
+        console.log(this.domElement);
+    }
+    moveRight() {
+        this.positionX++;
+        this.domElement.style.left = this.positionX + 'vw';
+    }
 }
 
 class Kitten extends Blob {
     constructor() {
-        const width = 15;
+        const width = 10;
         const height = 15;
         const positionX = Math.floor(Math.random() * (100 - width + 1));
-        const positionY = 0;
+        const positionY = height;
 
         super('kitten', 'kittenimage', width, height, positionX, positionY);
     }
@@ -130,10 +134,10 @@ class Kitten extends Blob {
     }
 
     moveAround() {
-        if (this.positionX <= 100 - width) {
-            moveLeft();
-            if (positionX >= 0 + width) {
-                moveRight();
+        if (this.positionX <= 100 - this.width) {
+            //moveLeft();
+            if (this.positionX >= 0 + this.width) {
+                //<moveRight();
             }
         }
     }
