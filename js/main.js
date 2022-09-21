@@ -21,8 +21,7 @@ class Game {
             this.kitten.moveAround();
             this.mitten.moveDown();
             if (this.detectWin() == true) {
-                const newKitten = new Kitten();
-                const newMitten = new Mitten();
+                this.game.start();
 
             }
 
@@ -32,6 +31,7 @@ class Game {
 
     attachEventListeners() {
         document.addEventListener('keydown', (event) => {
+            this.kitten.moveAround();
             if (event.key === 'ArrowLeft') {
                 this.mitten.moveLeft();
             } else if (event.key === 'ArrowRight') {
@@ -108,8 +108,6 @@ class Mitten extends Blob {
     moveLeft() {
         this.positionX--;
         this.domElement.style.left = this.positionX + 'vw';
-        console.log(this.positionX);
-        console.log(this.domElement);
     }
     moveRight() {
         this.positionX++;
@@ -125,6 +123,10 @@ class Kitten extends Blob {
         const positionY = 0;
 
         super('kitten', 'kittenimage', width, height, positionX, positionY);
+
+        this.indecision = 100;
+        this.direction = 1;
+        this.step = 1;
     }
 
     createKittenElement() {
@@ -134,12 +136,11 @@ class Kitten extends Blob {
     }
 
     moveAround() {
-        if (this.positionX <= 100 - this.width) {
-            //this.moveLeft();
-            if (this.positionX >= 0 + this.width) {
-                //this.moveRight();
-            }
+        if (Math.floor(Math.random() * this.indecision) == 0) {
+            this.direction = -this.direction;
         }
+        this.positionX += (this.direction * this.step);
+        this.domElement.style.left = this.positionX + 'vw';
     }
 }
 
