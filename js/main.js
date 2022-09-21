@@ -124,9 +124,9 @@ class Kitten extends Blob {
 
         super('kitten', 'kittenimage', width, height, positionX, positionY);
 
-        this.indecision = 100;
+        this.indecision = 50;
         this.direction = 1;
-        this.step = 1;
+        this.step = 70;
     }
 
     createKittenElement() {
@@ -139,8 +139,16 @@ class Kitten extends Blob {
         if (Math.floor(Math.random() * this.indecision) == 0) {
             this.direction = -this.direction;
         }
-        this.positionX += (this.direction * this.step);
-        this.domElement.style.left = this.positionX + 'vw';
+        let width = this.width * window.innerWidth / 100;
+        let move = this.direction * this.step;
+        if ((this.positionX + width + move < window.innerWidth)
+        && (this.positionX + move > 0)) {
+            this.positionX += move;
+        } else {
+            this.direction = -this.direction;
+        } 
+
+        this.domElement.style.left = this.positionX + 'px';
     }
 }
 
