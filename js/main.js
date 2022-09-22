@@ -67,10 +67,10 @@ class Blob {
     createDomElement() {
         const newElement = document.createElement('div');
         newElement.className = this.className;
-        newElement.style.left = this.positionX + 'vw';
-        newElement.style.bottom = this.positionY + 'vh';
-        newElement.style.width = this.width + 'vw';
-        newElement.style.height = this.height + 'vh';
+        newElement.style.left = this.positionX + 'px';
+        newElement.style.bottom = this.positionY + 'px';
+        newElement.style.width = this.width + 'px';
+        newElement.style.height = this.height + 'px';
         const backgroundElement = document.getElementById('background');
         backgroundElement.appendChild(newElement);
 
@@ -80,12 +80,14 @@ class Blob {
 
 class Mitten extends Blob {
     constructor() {
-        const width = 15;
-        const height = 20;
-        const positionX = 50;
-        const positionY = 100 - height;
+        const height = window.innerHeight * .15;
+        const width = height * 0.73;
+        const positionX = (window.innerWidth - width) / 2;
+        const positionY = window.innerHeight - height;
 
         super('mitten', 'mittenimage', width, height, positionX, positionY);
+        this.stepDown = window.innerHeight * 0.01;
+        this.stepAround = window.innerWidth * 0.02;
     }
 
     createMittenElement() {
@@ -95,8 +97,8 @@ class Mitten extends Blob {
     }
 
     moveDown() {
-        this.positionY--;
-        this.domElement.style.bottom = this.positionY + 'vh';
+        this.positionY -= this.stepDown;
+        this.domElement.style.bottom = this.positionY + 'px';
         if (this.positionY + this.height === 0) {
             this.domElement.remove();
         }
@@ -105,27 +107,27 @@ class Mitten extends Blob {
         }
     }
     moveLeft() {
-        this.positionX--;
-        this.domElement.style.left = this.positionX + 'vw';
+        this.positionX -= this.stepAround;
+        this.domElement.style.left = this.positionX + 'px';
     }
     moveRight() {
-        this.positionX++;
-        this.domElement.style.left = this.positionX + 'vw';
+        this.positionX += this.stepAround;
+        this.domElement.style.left = this.positionX + 'px';
     }
 }
 
 class Kitten extends Blob {
     constructor() {
-        const width = 20;
-        const height = 20;
-        const positionX = Math.floor(Math.random() * (100 - width + 1));
+        const height = window.innerHeight * 0.15;
+        const width = height * 1.1;
+        const positionX = Math.floor(Math.random() * (window.innerWidth - width));
         const positionY = 0;
 
         super('kitten', 'kittenimage', width, height, positionX, positionY);
 
         this.indecision = 50;
         this.direction = 1;
-        this.step = 70;
+        this.step = window.innerWidth * 0.01;
     }
 
     createKittenElement() {
@@ -138,9 +140,8 @@ class Kitten extends Blob {
         if (Math.floor(Math.random() * this.indecision) == 0) {
             this.direction = -this.direction;
         }
-        let width = this.width * window.innerWidth / 100;
         let move = this.direction * this.step;
-        if ((this.positionX + width + move < window.innerWidth)
+        if ((this.positionX + this.width + move < window.innerWidth)
         && (this.positionX + move > 0)) {
             this.positionX += move;
         } else {
