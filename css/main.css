@@ -4,6 +4,10 @@ body {
     background-color: rgb(218, 193, 242);
 }
 
+#level {
+    font-size: 10em;
+}
+
 #background {
     background-image: url(../images/cat-background.png);
     height: 100vh;

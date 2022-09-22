@@ -3,6 +3,7 @@ class Game {
         this.time = 0;
         this.mitten = null;
         this.kitten = null;
+        this.level = 1;
     }
 
     start() {
@@ -20,11 +21,13 @@ class Game {
         setInterval(() => {
             this.kitten.moveAround();
             this.mitten.moveDown();
-            if (this.detectWin() == true) {
-                this.game.start();
-
+            if (this.detectWin()) {
+                this.kitten.domElement.remove();
+                this.mitten.domElement.remove();
+                this.level++;
+                document.getElementById('level').innerHTML = `Level ${this.level}`
+                this.start();
             }
-
             this.time++;
         }, 100);
     }
@@ -40,15 +43,13 @@ class Game {
     }
 
     detectWin() {
-        if (
+        return (
             this.mitten.positionX < this.kitten.positionX + this.kitten.width &&
             this.mitten.positionX + this.mitten.width > this.kitten.positionX &&
             this.mitten.positionY < this.kitten.positionY + this.kitten.height &&
             this.mitten.height + this.mitten.positionY > this.kitten.positionY
-            ) {
-                console.log("you win! next level!")
-            }
-        };
+            );
+    }
 
 }
 
