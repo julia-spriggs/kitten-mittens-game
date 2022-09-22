@@ -16,17 +16,19 @@ class Game {
         this.mitten.moveDown();
         this.kitten.moveAround();
         this.attachEventListeners();
-        this.detectWin();
 
         setInterval(() => {
-            this.kitten.moveAround();
             this.mitten.moveDown();
+            this.kitten.moveAround();
             if (this.detectWin()) {
                 this.kitten.domElement.remove();
                 this.mitten.domElement.remove();
                 this.level++;
                 document.getElementById('level').innerHTML = `Level ${this.level}`
                 this.start();
+            } else if (this.detectLose()) {
+                this.mitten.domElement.remove();
+                document.getElementById('level').innerHTML = `Level ${this.level}<br>Game over`;
             }
             this.time++;
         }, 100);
@@ -49,6 +51,10 @@ class Game {
             this.mitten.positionY < this.kitten.positionY + this.kitten.height &&
             this.mitten.height + this.mitten.positionY > this.kitten.positionY
             );
+    }
+
+    detectLose() {
+        return this.mitten.positionY + this.mitten.height < 0;
     }
 
 }
