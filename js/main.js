@@ -133,8 +133,8 @@ class Kitten extends Blob {
         super('kitten', 'kittenimage', width, height, positionX, positionY);
 
         this.indecision = 50;
-        this.direction = 1;
-        this.step = window.innerWidth * 0.01;
+        this.direction = 0.2;
+        this.step = window.innerWidth * 0.03;
     }
 
     createKittenElement() {
