@@ -5,6 +5,18 @@ body {
     font: Tahoma;
 }
 
+.name {
+    background-color: rgb(203, 225, 241);
+    margin: 0 0 50px;
+    border-radius: 50px;
+    font-size: 4vh;
+    font-weight: bold;
+    padding: 4vh;
+    width:fit-content;
+    text-align: center;
+    box-shadow: 30px 30px 10px rgb(152, 196, 230)
+}
+
 #level {
     background-color: rgb(145, 200, 241);
     border-radius: 50px;
