@@ -42,6 +42,13 @@ class Game {
                 this.mitten.moveRight();
             }
         });
+        document.addEventListener('click', (event) => {
+            if (event.clientX < this.mitten.positionX) {
+                this.mitten.moveLeft();
+            } else {
+                this.mitten.moveRight();
+            }
+        });
     }
 
     detectWin() {
